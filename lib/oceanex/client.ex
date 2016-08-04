@@ -48,7 +48,8 @@ defmodule Oceanex.Client do
 
   defp headers(), do:
     %{"Content-Type" => "application/json",
-      "Authorization" => "Bearer #{@access_token}"}
+      "Authorization" => "Bearer #{@access_token}",
+      "User-Agent" => "oceanex"}
 
   defp gen_endpoint(path), do: @api_base_uri <> path
 end
