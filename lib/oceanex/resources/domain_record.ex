@@ -38,7 +38,7 @@ defmodule Oceanex.Resource.DomainRecord do
   """
   def update(domain_name, record_id, %{type: _, name: _, data: _, priority: _,
     port: _, weight: _} = opts), do:
-    put("/domains/#{domain_name}/records#{record_id}", opts)
+    put("/domains/#{domain_name}/records/#{record_id}", opts)
 
   @doc """
   Create a new record to a domain.
