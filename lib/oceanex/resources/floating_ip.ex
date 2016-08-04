@@ -13,7 +13,7 @@ defmodule Oceanex.Resource.FloatingIP do
   @doc """
   Create a FloatingIP record.
   """
-  def create(%{droplet_id: droplet_id} = opts), do: post("/floating_ips", opts)
+  def create(%{droplet_id: _} = opts), do: post("/floating_ips", opts)
 
   @doc """
   Create a FloatingIP record.
@@ -22,7 +22,7 @@ defmodule Oceanex.Resource.FloatingIP do
 
       Oceanex.Resource.FloatingIP.create(%{region: region})
   """
-  def create(%{region: region} = opts), do: post("/floating_ips", opts)
+  def create(%{region: _} = opts), do: post("/floating_ips", opts)
 
   @doc """
   Get a specific FloatingIP record.
@@ -41,7 +41,7 @@ defmodule Oceanex.Resource.FloatingIP do
 
       Oceanex.Resource.FloatingIP.assign(floating_ip_addr, %{droplet_id: droplet_id})
   """
-  def assign(floating_ip_addr, %{droplet_id: droplet_id} = opts), do:
+  def assign(floating_ip_addr, %{droplet_id: _} = opts), do:
     post("/floating_ips/#{floating_ip_addr}/actions",
       Map.put(opts, :type, "assign"))
 

@@ -17,7 +17,7 @@ defmodule Oceanex.Resource.Domain do
 
       Oceanex.Resource.Domain.create(%{name: name, ip_address: ip_address})
   """
-  def create(%{name: name, ip_address: ip_address} = opts), do: post("/domains",
+  def create(%{name: _, ip_address: _} = opts), do: post("/domains",
     opts)
 
   @doc """

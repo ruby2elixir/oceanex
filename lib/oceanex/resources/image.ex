@@ -22,7 +22,7 @@ defmodule Oceanex.Resource.Image do
 
       Oceanex.Resource.Image.update(image_id, %{name: name})
   """
-  def update(image_id, %{name: name} = opts), do:
+  def update(image_id, %{name: _} = opts), do:
     put("/images/#{image_id}", opts)
 
   @doc """

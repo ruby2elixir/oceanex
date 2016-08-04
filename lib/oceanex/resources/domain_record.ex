@@ -19,9 +19,8 @@ defmodule Oceanex.Resource.DomainRecord do
       Oceanex.Resource.DomainRecord.create(domain_name, %{type: type, name: name, data: data,
       priority: priority, port: port, weight: weight})
   """
-  def create(domain_name, %{type: type, name: name, data: data,
-    priority: priority, port: port, weight: weight} = opts), do:
-    post("/domains/#{domain_name}/records", opts)
+  def create(domain_name, %{type: _, name: _, data: _, priority: _, port: _,
+    weight: _} = opts), do: post("/domains/#{domain_name}/records", opts)
 
   @doc """
   Create a new record to a domain.
@@ -37,8 +36,8 @@ defmodule Oceanex.Resource.DomainRecord do
       Oceanex.Resource.DomainRecord.update(domain_name, record_id, %{type: type, name: name, data: data,
       priority: priority, port: port, weight: weight})
   """
-  def update(domain_name, record_id, %{type: type, name: name, data: data,
-    priority: priority, port: port, weight: weight} = opts), do:
+  def update(domain_name, record_id, %{type: _, name: _, data: _, priority: _,
+    port: _, weight: _} = opts), do:
     put("/domains/#{domain_name}/records#{record_id}", opts)
 
   @doc """

@@ -13,7 +13,7 @@ defmodule Oceanex.Resource.Key do
   @doc """
   Create a ssh key record.
   """
-  def create(%{name: name, public_key: public_key} = opts), do:
+  def create(%{name: _, public_key: _} = opts), do:
     post("/account/keys", opts)
 
   @doc """
@@ -29,7 +29,7 @@ defmodule Oceanex.Resource.Key do
 
       Oceanex.Resource.Key.update(key_id_or_key_finger_print, %{name: name})
   """
-  def update(key_id_or_key_finger_print, %{name: name} = opts), do:
+  def update(key_id_or_key_finger_print, %{name: _} = opts), do:
     put("/account/keys/#{key_id_or_key_finger_print}", opts)
 
   @doc """

@@ -11,23 +11,17 @@ defmodule Oceanex.Resource.Droplet do
   def all(opts \\ %{}), do: get("/droplets", opts)
 
   @doc """
-  Create a droplet record.
+  Create a droplet, or multiple droplets.
 
   ### Examples
 
       Oceanex.Resource.Droplet.create(%{name: name, region: region, size: size, image: image})
-  """
-  def create(%{name: name, region: region, size: size, image: image} = opts),
-    do: post("/droplets", opts)
-
-  @doc """
-  Create multiple droplet records.
-
-  ### Examples
 
       Oceanex.Resource.Droplet.create(%{names: names, region: region, size: size, image: image})
   """
-  def create(%{names: names, region: region, size: size, image: image} = opts),
+  def create(%{name: _, region: _, size: _, image: _} = opts),
+    do: post("/droplets", opts)
+  def create(%{names: _, region: _, size: _, image: _} = opts),
     do: post("/droplets", opts)
 
   @doc """
@@ -36,7 +30,7 @@ defmodule Oceanex.Resource.Droplet do
   def find(droplet_id), do: get("/droplets/#{droplet_id}")
 
   @doc """
-  Delete a specific droplet record.
+  Delete a specific droplet.
   """
   def destroy(droplet_id), do: delete("/droplets/#{droplet_id}")
 
@@ -95,7 +89,7 @@ defmodule Oceanex.Resource.Droplet do
     do: post("/droplets/#{droplet_id}/actions", %{type: "reboot"})
 
   @doc """
-  Reboot a droplet.
+  Power Cycle a droplet.
   """
   def power_cycle(droplet_id),
     do: post("/droplets/#{droplet_id}/actions", %{type: "power_cycle"})
@@ -125,7 +119,7 @@ defmodule Oceanex.Resource.Droplet do
 
       Oceanex.Resource.Droplet.restore(droplet_id, %{image: image})
   """
-  def restore(droplet_id, %{image: image} = opts),
+  def restore(droplet_id, %{image: _} = opts),
     do: post("/droplets/#{droplet_id}/actions", Map.put(opts, :type, "restore"))
 
   @doc """
@@ -141,7 +135,7 @@ defmodule Oceanex.Resource.Droplet do
 
       Oceanex.Resource.Droplet.resize(droplet_id, %{size: size})
   """
-  def resize(droplet_id, %{size: size} = opts),
+  def resize(droplet_id, %{size: _} = opts),
     do: post("/droplets/#{droplet_id}/actions", Map.put(opts, :type, "resize"))
 
   @doc """
@@ -151,7 +145,7 @@ defmodule Oceanex.Resource.Droplet do
 
       Oceanex.Resource.Droplet.rebuild(droplet_id, %{image: image})
   """
-  def rebuild(droplet_id, %{image: image} = opts),
+  def rebuild(droplet_id, %{image: _} = opts),
     do: post("/droplets/#{droplet_id}/actions", Map.put(opts, :type, "rebuild"))
 
   @doc """
@@ -161,7 +155,7 @@ defmodule Oceanex.Resource.Droplet do
 
       Oceanex.Resource.Droplet.rename(droplet_id, %{name: name})
   """
-  def rename(droplet_id, %{name: name} = opts),
+  def rename(droplet_id, %{name: _} = opts),
     do: post("/droplets/#{droplet_id}/actions", Map.put(opts, :type, "rename"))
 
   @doc """
@@ -171,7 +165,7 @@ defmodule Oceanex.Resource.Droplet do
 
       Oceanex.Resource.Droplet.change_kernel(droplet_id, %{kernel: kernel})
   """
-  def change_kernel(droplet_id, %{kernel: kernel} = opts),
+  def change_kernel(droplet_id, %{kernel: _} = opts),
     do: post("/droplets/#{droplet_id}/actions", Map.put(opts, :type,
           "change_kernel"))
 
@@ -195,7 +189,7 @@ defmodule Oceanex.Resource.Droplet do
 
       Oceanex.Resource.Droplet.snapshot(droplet_id, %{name: name})
   """
-  def snapshot(droplet_id, %{name: name} = opts),
+  def snapshot(droplet_id, %{name: _} = opts),
     do: post("/droplets/#{droplet_id}/actions", Map.put(opts, :type,
           "snapshot"))
 
@@ -206,6 +200,6 @@ defmodule Oceanex.Resource.Droplet do
 
       Oceanex.Resource.Droplet.actions_on_tagged(tag_name, %{type: type})
   """
-  def actions_on_tagged(tag_name, %{type: type} = opts),
+  def actions_on_tagged(tag_name, %{type: _} = opts),
     do: post("/droplets/actions?tag_name=#{tag_name}", opts)
 end

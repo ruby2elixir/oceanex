@@ -19,8 +19,8 @@ defmodule Oceanex.Resource.Volume do
 
       Oceanex.Resource.Volume.create(%{size_gigabytes: size_gigabytes, name: name, region: region})
   """
-  def create(%{size_gigabytes: size_gigabytes, name: name, region: region} =
-    opts), do: post("/volumes", opts)
+  def create(%{size_gigabytes: _, name: _, region: _} = opts), do:
+    post("/volumes", opts)
 
   @doc """
   Get a specific volume record with drive_id or drive_name.
@@ -43,11 +43,10 @@ defmodule Oceanex.Resource.Volume do
 
       Oceanex.Resource.Volume.attach(%{droplet_id: droplet_id, volume_name: volume_name, region: region})
   """
-  def attach(volume_id, %{droplet_id: droplet_id, region: region} = opts), do:
+  def attach(volume_id, %{droplet_id: _, region: _} = opts), do:
     post("/volumes/#{volume_id}/actions", Map.put(opts, :type, "attach"))
-  def attach(%{droplet_id: droplet_id, volume_name: volume_name,
-    region: region} = opts), do: post("/volumes/actions",
-                                   Map.put(opts, :type, "attach"))
+  def attach(%{droplet_id: _, volume_name: _, region: _} = opts), do:
+    post("/volumes/actions", Map.put(opts, :type, "attach"))
 
   @doc """
   Detach a Block Storage volume from a Droplet by volume id or name.
@@ -58,11 +57,10 @@ defmodule Oceanex.Resource.Volume do
 
       Oceanex.Resource.Volume.detach(%{droplet_id: droplet_id, volume_name: volume_name, region: region})
   """
-  def detach(volume_id, %{droplet_id: droplet_id, region: region} = opts), do:
+  def detach(volume_id, %{droplet_id: _, region: _} = opts), do:
     post("/volumes/#{volume_id}/actions", Map.put(opts, :type, "detach"))
-  def detach(%{droplet_id: droplet_id, volume_name: volume_name,
-    region: region} = opts), do: post("/volumes/actions",
-                                   Map.put(opts, :type, "detach"))
+  def detach(%{droplet_id: _, volume_name: _, region: _} = opts),
+    do: post("/volumes/actions", Map.put(opts, :type, "detach"))
 
   @doc """
   To resize a Block Storage volume.
@@ -71,9 +69,8 @@ defmodule Oceanex.Resource.Volume do
 
       Oceanex.Resource.Volume.resize(drive_id, %{size_gigabytes: size_gigabytes, region: region})
   """
-  def resize(drive_id, %{size_gigabytes: size_gigabytes, region: region} =
-    opts), do: post("/volumes/#{drive_id}/actions",
-                 Map.put(opts, :type, "resize"))
+  def resize(drive_id, %{size_gigabytes: _, region: _} = opts), do:
+    post("/volumes/#{drive_id}/actions", Map.put(opts, :type, "resize"))
 
   @doc """
   Get all action records that have been executed on a volume.
