@@ -9,4 +9,5 @@ defmodule Oceanex.Resource.Region do
   List all region records.
   """
   def all(opts \\ %{}), do: get("/regions", opts)
+  def all!(opts \\ %{}), do: all(opts) |> body!
 end

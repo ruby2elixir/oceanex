@@ -10,7 +10,7 @@ The package can be installed as:
 
     ```elixir
     def deps do
-      [{:oceanex, "~> 0.1.0"}]
+      [{:oceanex, "~> 0.2.0"}]
     end
     ```
 
@@ -33,7 +33,16 @@ The package can be installed as:
 
 ## Usage
 
-Please refer to https://hexdocs.pm/oceanex
+If you need only body of api response, add ! end of methods. On the other hand
+if you need header, body and response then use normal functions without ! sign.
+
+    ```elixir
+    Oceanex.Resource.Account.info!
+
+    Oceanex.Resource.Account.info
+    ```
+
+Please refer to [hexdocs](https://hexdocs.pm/oceanex) to see all modules and functions.
 
 ## Contributing
 

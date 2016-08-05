@@ -9,4 +9,5 @@ defmodule Oceanex.Resource.Account do
   Get user information
   """
   def info, do: get("/account")
+  def info!, do: info |> body!
 end

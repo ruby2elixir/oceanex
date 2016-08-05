@@ -10,6 +10,7 @@ defmodule Oceanex.Resource.DomainRecord do
   """
   def all(domain_name, opts \\ %{}), do:
     get("/domains/#{domain_name}/records", opts)
+  def all!(domain_name, opts \\ %{}), do: all(domain_name, opts) |> body!
 
   @doc """
   Create a new record to a domain.
@@ -21,12 +22,14 @@ defmodule Oceanex.Resource.DomainRecord do
   """
   def create(domain_name, %{type: _, name: _, data: _, priority: _, port: _,
     weight: _} = opts), do: post("/domains/#{domain_name}/records", opts)
+  def create!(domain_name, opts), do: create(domain_name, opts) |> body!
 
   @doc """
   Create a new record to a domain.
   """
   def find(domain_name, record_id), do:
     get("/domains/#{domain_name}/records/#{record_id}")
+  def find!(domain_name, record_id), do: find(domain_name, record_id) |> body!
 
   @doc """
   Create a new record to a domain.
@@ -39,10 +42,14 @@ defmodule Oceanex.Resource.DomainRecord do
   def update(domain_name, record_id, %{type: _, name: _, data: _, priority: _,
     port: _, weight: _} = opts), do:
     put("/domains/#{domain_name}/records/#{record_id}", opts)
+  def update!(domain_name, record_id, opts), do: update(domain_name, record_id,
+    opts) |> body!
 
   @doc """
   Create a new record to a domain.
   """
   def destroy(domain_name, record_id), do:
     delete("/domains/#{domain_name}/records/#{record_id}")
+  def destroy!(domain_name, record_id), do:
+    destroy(domain_name, record_id) |> body!
 end

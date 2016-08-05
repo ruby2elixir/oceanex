@@ -29,6 +29,12 @@ defmodule Oceanex.Client do
   """
   def delete(path, opts \\ ""), do: call(path, :delete, opts)
 
+  @doc """
+  Fetch only body from response
+  """
+  def body!({:ok, resp}), do: resp.body
+  def body!({:error, err}), do: err
+
   defp call(path, method, opts) do
     opts = case opts do
       nil -> opts
@@ -46,10 +52,9 @@ defmodule Oceanex.Client do
   end
   defp response({:error, error}), do: {:error, error.reason}
 
-  defp headers(), do:
-    %{"Content-Type" => "application/json",
-      "Authorization" => "Bearer #{@access_token}",
-      "User-Agent" => "oceanex"}
+  defp headers, do: %{"Content-Type" => "application/json",
+    "Authorization" => "Bearer #{@access_token}",
+    "User-Agent" => "oceanex"}
 
   defp gen_endpoint(path), do: @api_base_uri <> path
 end
