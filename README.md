@@ -36,11 +36,11 @@ The package can be installed as:
 If you need only body of api response, add ! end of methods. On the other hand
 if you need header, body and response then use normal functions without ! sign.
 
-    ```elixir
-    Oceanex.Resource.Account.info!
+```elixir
+Oceanex.Resource.Account.info!
 
-    Oceanex.Resource.Account.info
-    ```
+Oceanex.Resource.Account.info
+```
 
 Please refer to [hexdocs](https://hexdocs.pm/oceanex) to see all modules and functions.
 
