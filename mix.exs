@@ -32,7 +32,7 @@ defmodule Oceanex.Mixfile do
 
   defp description do
     """
-    DigitalOcean V2 API Client library (unofficial)
+    Digital Ocean API client.
     """
   end
 
